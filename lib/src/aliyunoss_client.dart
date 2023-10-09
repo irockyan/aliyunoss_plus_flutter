@@ -132,9 +132,11 @@ class AliyunOssClient {
       final cancelToken = CancelToken();
       _taskMap[id] = cancelToken;
       await Dio(BaseOptions(
-              connectTimeout: AliyunOssHttp.connectTimeout,
-              sendTimeout: AliyunOssHttp.sendTimeout,
-              receiveTimeout: AliyunOssHttp.receiveTimeout))
+              connectTimeout:
+                  Duration(milliseconds: AliyunOssHttp.connectTimeout),
+              sendTimeout: Duration(milliseconds: AliyunOssHttp.sendTimeout),
+              receiveTimeout:
+                  Duration(milliseconds: AliyunOssHttp.receiveTimeout)))
           .put(requestUrl,
               data: data,
               options:
@@ -216,9 +218,11 @@ class AliyunOssClient {
     String uploadId = "";
     try {
       final result = await Dio(BaseOptions(
-              connectTimeout: AliyunOssHttp.connectTimeout,
-              sendTimeout: AliyunOssHttp.sendTimeout,
-              receiveTimeout: AliyunOssHttp.receiveTimeout))
+              connectTimeout:
+                  Duration(milliseconds: AliyunOssHttp.connectTimeout),
+              sendTimeout: Duration(milliseconds: AliyunOssHttp.sendTimeout),
+              receiveTimeout:
+                  Duration(milliseconds: AliyunOssHttp.receiveTimeout)))
           .post<String>(requestUrl,
               options:
                   Options(headers: headers, responseType: ResponseType.plain));
@@ -310,9 +314,11 @@ class AliyunOssClient {
 
         // 开始上传
         final result = await Dio(BaseOptions(
-                connectTimeout: AliyunOssHttp.connectTimeout,
-                sendTimeout: AliyunOssHttp.sendTimeout,
-                receiveTimeout: AliyunOssHttp.receiveTimeout))
+                connectTimeout:
+                    Duration(milliseconds: AliyunOssHttp.connectTimeout),
+                sendTimeout: Duration(milliseconds: AliyunOssHttp.sendTimeout),
+                receiveTimeout:
+                    Duration(milliseconds: AliyunOssHttp.receiveTimeout)))
             .put<String>(
           requestUrl,
           data: data,
@@ -352,8 +358,8 @@ class AliyunOssClient {
       } catch (e) {
         conditionUpload = false;
         //本地化
-          String json = partInfo.toEncodeString();
-          await keyStoreSave(id, json);
+        String json = partInfo.toEncodeString();
+        await keyStoreSave(id, json);
         // 上传失败
         _controller.sink.add(AliyunOssResult(
             state: AliyunOssResultState.fail,
@@ -423,9 +429,11 @@ class AliyunOssClient {
 
       // 提交请求
       final result = await Dio(BaseOptions(
-              connectTimeout: AliyunOssHttp.connectTimeout,
-              sendTimeout: AliyunOssHttp.sendTimeout,
-              receiveTimeout: AliyunOssHttp.receiveTimeout))
+              connectTimeout:
+                  Duration(milliseconds: AliyunOssHttp.connectTimeout),
+              sendTimeout: Duration(milliseconds: AliyunOssHttp.sendTimeout),
+              receiveTimeout:
+                  Duration(milliseconds: AliyunOssHttp.receiveTimeout)))
           .post<void>(
         requestUrl,
         data: data,
